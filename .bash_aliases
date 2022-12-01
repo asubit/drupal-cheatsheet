@@ -18,4 +18,7 @@ alias cim-y="cd_web && php -d memory_limit=-1 ../vendor/bin/drush cim -y"
 alias cex="cd_web && php -d memory_limit=-1 ../vendor/bin/drush cex"
 alias cex-y="cd_web && php -d memory_limit=-1 ../vendor/bin/drush cex -y"
 alias compil="cd ${THEME_ROOT} && ./node_modules/gulp/bin/gulp.js && cr"
+
+# Make all vendor binaries available as command.
+export PATH="/var/www/drupal/vendor/bin:$PATH"
 ```
