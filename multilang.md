@@ -38,17 +38,19 @@ class Hello {
  \Drupal::languageManager();
  ```
  
- ### Dependency injection
- 
-  ```yml
+### Dependency injection
+
+my_module.services.yml
+```yml
 services:
   hello.service:
     class: \Drupal\my_module\Service\Hello
     arguments:
       - '@language_manager'
- ```
- 
-  ```php
+```
+
+Hello.php
+```php
 ...
 use Drupal\Core\Language\LanguageManager;
 ...
@@ -75,7 +77,7 @@ class Hello {
     $langs = $this->languageManager->getLanguages();
   }
 }
- ```
+```
  
  ## API links
  
