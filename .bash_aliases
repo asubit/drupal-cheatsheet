@@ -17,6 +17,9 @@ alias cim="cd_web && php -d memory_limit=-1 ../vendor/bin/drush cim"
 alias cim-y="cd_web && php -d memory_limit=-1 ../vendor/bin/drush cim -y"
 alias cex="cd_web && php -d memory_limit=-1 ../vendor/bin/drush cex"
 alias cex-y="cd_web && php -d memory_limit=-1 ../vendor/bin/drush cex -y"
+alias en='f(){ cd_web && php -d memory_limit=-1 ../vendor/bin/drush en "$@";  unset -f f; }; f'
+alias pmu='f(){ cd_web && php -d memory_limit=-1 ../vendor/bin/drush pmu "$@";  unset -f f; }; f'
+alias ws='cd_web && php -d memory_limit=-1 ../vendor/bin/drush ws --tail'
 alias compil="cd ${THEME_ROOT} && ./node_modules/gulp/bin/gulp.js && cr"
 
 # Make all vendor binaries available as command.
