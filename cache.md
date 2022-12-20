@@ -3,18 +3,24 @@
 ## Static call
 
 ```php
-$cache = \Drupal::cache();
-$cid = 'thing:identifier';
-$data = NULL;
+function getFromCache() {
+  $cache = \Drupal::cache();
+  $cid = 'thing:identifier';
+  $data = NULL;
 
-$something_cache = $cache->get($cid);
+  $something_cache = $cache->get($cid);
 
-if ($something_cache) {
-  $data = $something_cache->data;
+  if ($something_cache) {
+    $data = $something_cache->data;
+  }
+  else {
+    $data = my_module_complicated_calculation();
+    $cache->set($cid, $data);
+  }
 }
-else {
-  $data = my_module_complicated_calculation();
-  $cache->set($cid, $data);
+
+function invalidateCacheTags() {
+  \Drupal::service('cache_tags.invalidator')->invalidateTags(['node_list:article']);
 }
 ```
 
@@ -28,6 +34,7 @@ services:
     class: \Drupal\my_module\Service\Hello
     arguments:
       - '@cache.default'
+      - '@cache_tags.invalidator'
 ```
 
 Hello.php
@@ -36,6 +43,7 @@ Hello.php
 ...
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Cache\CacheTagsInvalidator;
 ...
 class Hello {
 
@@ -46,17 +54,28 @@ class Hello {
    */
   protected $cacheBackend;
 
+ /**
+   * Cache tags invalidator.
+   *
+   * @var Drupal\Core\Cache\CacheTagsInvalidator
+   */
+  protected $cacheInvalidator;
+
   /**
    * {@inheritdoc}
    */
-  public function __construct(CacheBackendInterface $cacheBackend) {
+  public function __construct(
+    CacheBackendInterface $cacheBackend,
+    CacheTagsInvalidator $cacheInvalidator
+  ) {
     $this->cacheBackend = $cacheBackend;
+    $this->cacheInvalidator = $cacheInvalidator;
   }
   
   /**
-   * Function doing something with CacheBackendInterface.
+   * Function getting something from cache.
    */
-  public function something() {
+  public function getSomething() {
     $cid = 'thing:identifier';
     $data = NULL;
 
@@ -70,6 +89,15 @@ class Hello {
       $this->cacheBackend->set($cid, $data, Cache::PERMANENT, ['node:5', 'user:7']);
     }
     return $data;
+  }
+  
+  /**
+   * Function invalidating a cache tag.
+   */
+  public function invalidateSomething() {
+    $cid = 'thing:identifier';
+    $this->cacheInvalidator->invalidateTags([$cid]);
+    return;
   }
 }    
 ```
