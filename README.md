@@ -105,6 +105,12 @@ TRUNCATE cache_render;
 TRUNCATE cache_toolbar;
 ```
 
+Brutal way in case of troubles (to execute in shell) :
+
+```shell
+mysql -h mysql -u root -proot drupal -e "TRUNCATE cache_config;TRUNCATE cache_container;TRUNCATE cache_data;TRUNCATE cache_default;TRUNCATE cache_discovery;TRUNCATE cache_dynamic_page_cache;TRUNCATE cache_entity;TRUNCATE cache_menu;TRUNCATE cache_render;TRUNCATE cache_toolbar;"
+```
+
 ## Configuration management
 
 Import configuration from files :
