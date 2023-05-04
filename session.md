@@ -14,7 +14,7 @@ services:
   hello.service:
     class: \Drupal\my_module\Service\Hello
     arguments:
-      - '@user.private_tempstore'
+      - '@tempstore.private'
  ```
  
 ```php
