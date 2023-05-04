@@ -19,7 +19,7 @@ services:
  
 ```php
 ...
-Drupal\user\PrivateTempStoreFactory;
+use Drupal\user\PrivateTempStoreFactory;
 ...
 class Hello {
   
