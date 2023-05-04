@@ -19,14 +19,14 @@ services:
  
 ```php
 ...
-use Drupal\user\PrivateTempStoreFactory;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 ...
 class Hello {
   
   /**
-   * User session.
+   * User private temporary session storage.
    *
-   * @var \Drupal\user\PrivateTempStore
+   * @var \Drupal\Core\TempStore\PrivateTempStore
    */
   protected $session;
   
@@ -41,7 +41,7 @@ class Hello {
    * Doing something wild with user session.
    */
   public function something() {
-    // Add data in session.
+    // Add data in user temp storage session.
     $this->session->set('variable', $value);
   }
 }
@@ -49,6 +49,7 @@ class Hello {
  
  ## API links
  
+  - [tempstore.private](https://api.drupal.org/api/drupal/core%21core.services.yml/service/tempstore.private/8.8.x)
   - [PrivateTempStoreFactory](https://api.drupal.org/api/drupal/core%21modules%21user%21src%21PrivateTempStoreFactory.php/class/PrivateTempStoreFactory/8.9.x)
   - [PrivateTempStore](https://api.drupal.org/api/drupal/core%21modules%21user%21src%21PrivateTempStore.php/class/PrivateTempStore/8.9.x)
   - [UserSession](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Session%21UserSession.php/class/UserSession/8.8.x)
