@@ -57,6 +57,8 @@ class Hello {
 ```
 ## Query
 
+How to query Drupal database with the entity type manager :
+
  > **Tips** : Get the entity query from storage is the best practice.
 
 ```php
@@ -73,6 +75,18 @@ $query->count();
 $nids = $query->execute();
 // Load results.
 $storage->loadMultiple($nids);
+```
+
+## Render
+
+How to render a node programatically on Drupal 8 :
+
+```php
+$storage = 'node';
+$entity = $this->entityTypeManager->getStorage($storage)->load(1);
+$builder = $this->entityTypeManager->getViewBuilder($storage);
+$view_mode = 'default';
+$render = $builder->view($entity, $view_mode);
 ```
 
 ## API links
