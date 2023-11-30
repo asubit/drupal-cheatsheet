@@ -82,6 +82,15 @@ class Hello {
     $logger->notice('...');
     // Exceptional occurrences that are not errors.
     $logger->warning('...');
+
+    // Catch exception.
+    try {
+      $this->trySomething();
+    }
+    catch (\Exception $e) {
+      $logger->error($e->getMessage());
+      $logger->error($e->getTraceAsString());
+    }
   }
 }
 ```
