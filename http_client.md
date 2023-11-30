@@ -43,7 +43,8 @@ class Hello {
         ]
       );
       return json_decode((string)$response->getBody(), TRUE);
-    } catch (RequestException $e) {
+    }
+    catch (RequestException $e) {
       $logger = $this->loggerFactory->get('my_module');
       $logger->error($e->getMessage());
       $logger->error($e->getTraceAsString());
