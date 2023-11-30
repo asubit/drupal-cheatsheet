@@ -36,12 +36,17 @@ class Hello {
       $response = $this->httpClient->get(
         'https://api.domain.com',
         [
-          'headers' => ['Accept' => 'application/json']
+          'headers' => [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+          ]
         ]
       );
-      return json_decode((string)$response->getBody(), true);
+      return json_decode((string)$response->getBody(), TRUE);
     } catch (RequestException $e) {
-      $this->loggerFactory->get('my_module')->error($e);
+      $logger = $this->loggerFactory->get('my_module');
+      $logger->error($e->getMessage());
+      $logger->error($e->getTraceAsString());
       return [];
     }
   }
