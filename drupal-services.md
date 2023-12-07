@@ -33,8 +33,12 @@ class Hello {
 
  > https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3ArouteMatch/8.2.x
 
-```yaml
- - '@current_route_match'
+```yml
+services:
+  hello:
+    class: Drupal\module_name\Service\Hello
+    arguments:
+      - '@current_route_match'
 ```
 
 ```php
@@ -54,8 +58,12 @@ class Hello {
 
 Get current request and cookies.
 
-```yaml
- - '@request_stack'
+```yml
+services:
+  hello:
+    class: Drupal\module_name\Service\Hello
+    arguments:
+      - '@request_stack'
 ```
 
 ```php
