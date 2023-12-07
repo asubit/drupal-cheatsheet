@@ -1,5 +1,34 @@
 # Drupal services
 
+## Current user
+
+ > https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AcurrentUser/8.2.x
+
+```php
+\Drupal::currentUser();
+```
+
+```yml
+services:
+  hello:
+    class: Drupal\module_name\Service\Hello
+    arguments:
+      - '@current_user'
+```
+
+```php
+use Drupal\Core\Routing\RouteMatchInterface;
+
+class Hello {
+  /**
+   * Current user.
+   *
+   * @var \Drupal\Core\Session\AccountProxyInterface
+   */
+  protected $currentUser;
+}
+```
+
 ## Route match
 
  > https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3ArouteMatch/8.2.x
