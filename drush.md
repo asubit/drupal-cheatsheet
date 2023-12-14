@@ -33,3 +33,10 @@ drush eval "echo \Drupal::service('uuid')->generate();"
 # Force uninstall module.
 drush eval "\$module_data = \Drupal::config('core.extension')->get('module'); unset(\$module_data['MODULE_NAME']); \Drupal::configFactory()->getEditable('core.extension')->set('module', \$module_data)->save();"
 ```
+
+## Devel
+
+```sh
+# Generate UUID.
+drush devel:uuid
+```
