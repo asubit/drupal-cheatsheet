@@ -1,5 +1,13 @@
 # Drupal services
 
+The Services and Dependency Injection Container concepts have been adopted by Drupal from the Symfony DependencyInjection component. A "service" (such as accessing the database, sending email, or translating user interface text) is defined (given a name and an interface or at least a class that defines the methods that may be called), and a default class is designated to provide the service. These two steps must be done together, and can be done by Drupal Core or a module.
+
+ > [Services and Dependency Injection Container](https://api.drupal.org/api/drupal/core%21core.api.php/group/container/10)<br>
+ [All the services name](https://api.drupal.org/api/drupal/services/10)<br>
+ [All the service tags](https://api.drupal.org/api/drupal/core%21core.api.php/group/service_tag/10)
+
+## Summary
+
  - [Current user](#current-user)
  - [Route match](#route-match)
  - [Request stack](#request-stack)
