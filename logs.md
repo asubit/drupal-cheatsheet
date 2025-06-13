@@ -52,7 +52,10 @@ class Hello {
   protected $loggerFactory;
 
   /**
-   * {@inheritdoc}
+   * Construct a Hello object.
+   *
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $loggerFactory
+   *   Logger factory.
    */
   public function __construct(LoggerChannelFactoryInterface $loggerFactory) {
     $this->loggerFactory = $loggerFactory;
