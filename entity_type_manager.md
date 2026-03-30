@@ -53,8 +53,23 @@ class Hello {
       'vid' => 'vocabulary_name',
     ]);
   }
-}    
+}
 ```
+
+## Create entity
+
+```php
+$node = \Drupal::entityTypeManager()
+  ->getStorage('node')
+  ->create([
+    'type' => 'article',
+    'title' => 'Another node'
+  ]);
+$node->save();
+```
+
+ > More details on official Drupal documentation : [Working with the Entity API](https://www.drupal.org/docs/drupal-apis/entity-api/working-with-the-entity-api)
+
 ## Query
 
 How to query Drupal database with the entity type manager :
@@ -75,6 +90,23 @@ $query->count();
 $nids = $query->execute();
 // Load results.
 $storage->loadMultiple($nids);
+```
+
+## Load taxonomy tree
+
+```php
+$terms = $this->entityTypeManager
+  ->getStorage('taxonomy_term')
+  ->loadTree('vocabulary_id');
+
+$options = array_map(
+  function($term) { return $term->name; },
+  $terms
+);
+// or :
+foreach ($terms as $term) {
+  $options[$term->tid] = $term->name;
+}
 ```
 
 ## Render
